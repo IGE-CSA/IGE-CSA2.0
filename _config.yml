@@ -1,9 +1,9 @@
-title: Grace2.0
-description: "Grace's CSA Blog"
-owner_name: Grace Wang
-github_username: gwang1224
-github_repo: "grace2.0"
-baseurl: "/grace2.0"
+title: IGE2.0
+description: "Isabelle, Grace, & Emma"
+owner_name: IGE
+github_username: IGE-CSA
+github_repo: "IGE-CSA2.0"
+baseurl: "/IGE-CSA2.0"
 remote_theme: jekyll/minima
 minima:
   social_links:
