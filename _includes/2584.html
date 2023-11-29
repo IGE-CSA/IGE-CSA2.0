@@ -1,0 +1,134 @@
+<head>
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,400,800" rel="stylesheet">
+<script>
+    window.onload = function() {
+        buildGridOverlay(); //Generates grid-overlay
+        cellCreator(2, 0);
+        directions();
+        score(0);
+    };
+
+
+    /* GENERATE GRID */
+    function buildGridOverlay() {
+    var game = document.getElementsByClassName('game');  
+    var grid = document.getElementsByClassName('grid');
+    var size = 4;
+    var table = document.createElement('DIV');
+
+    table.className += 'grid';
+    table.id = ' ';
+    table.dataset.value = 0;
+    
+    for (var i = 0; i < size; i++) {
+        var tr = document.createElement('DIV');
+        table.appendChild(tr);
+        tr.id = 'row_' + (i+1);
+        tr.className += 'grid_row';
+        
+        for (var j = 0; j < size; j++) {
+        var td = document.createElement('DIV');
+        td.id = '' +(i+1) +(j+1); //ID with x y
+        td.className += 'grid_cell';
+        tr.appendChild(td);
+        }
+    document.body.appendChild(table);
+    }
+    
+    return table;
+    }
+
+    // insert logic for game here
+
+    /* ----- STYLE ----- */
+    function colorSet(value, tile) {
+    switch(value) {
+        case 2:    tile.style.background = '#fbfced'; tile.style.color = 'black'; break;
+        case 4:    tile.style.background = '#ecefc6'; tile.style.color = 'black'; break;
+        case 8:    tile.style.background = '#ffb296'; tile.style.color = 'black'; break;
+        case 16:   tile.style.background = '#ff7373'; tile.style.color = 'black'; break;
+        case 32:   tile.style.background = '#f6546a'; tile.style.color = 'white'; break;
+        case 64:   tile.style.background = '#8b0000'; tile.style.color = 'white'; break;
+        case 128:  tile.style.background = '#794044'; tile.style.color = 'white'; 
+                tile.style.fontSize = '50px'; break;
+        case 256:  tile.style.background = '#31698a'; tile.style.color = 'white';
+                tile.style.fontSize = '50px'; break;
+        case 512:  tile.style.background = '#297A76'; tile.style.color = 'white';
+                tile.style.fontSize = '50px'; break;
+        case 1024: tile.style.background = '#2D8A68'; tile.style.color = 'white';
+                tile.style.fontSize = '40px'; break;
+        case 2048: tile.style.background = '#1C9F4E'; tile.style.color = 'white'; 
+                tile.style.fontSize = '40px'; 
+                document.getElementById('status').className = 'won'; break;
+        case 4096: tile.style.background = '#468499'; tile.style.color = 'white'; 
+                tile.style.fontSize = '40px'; break;
+        case 8192: tile.style.background = '#0E2F44'; tile.style.color = 'white';
+                tile.style.fontSize = '40px'; break;
+    }
+                        
+    }
+
+    function info() {
+    setTimeout(function() {
+        document.getElementById('description').classList.toggle('show');
+    }, 10);  
+    
+    }
+
+    function reset() {
+    for (var x = 1; x < 5; x++) {
+        for (var y = 1; y < 5; y++) {
+        var resetter = document.getElementById(''+x +y);
+        if (resetter.className == 'grid_cell active') {
+            var tile = document.getElementById('tile_'+x +y);
+            resetter.removeChild(tile);
+        }
+        }
+    }
+    document.getElementById('status').className = '';
+    document.getElementById(' ').dataset.value = 0;
+    score();
+    cellReset();
+    cellCreator(2, 0);
+    }
+</script>
+</head>
+
+<body>
+  <div class="game">
+    <div class="head">
+      <div class="a">2584 <button class="info" onClick='info()'>i</button> <button id="repeat" class="info repeat" onClick='reset()'>↻</button></div>
+      <div class="score">Score<br/><span id="value"></span></div>
+    </div>
+    <div class="field">
+      
+      <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+    </div>
+    
+  </div>
+  <div class='' id='status'>
+  </div>
+</body>
