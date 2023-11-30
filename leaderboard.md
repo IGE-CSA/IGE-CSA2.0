@@ -2,7 +2,6 @@
 layout: base
 title: Leaderboard
 ---
-test
 <!-- 
 Get Method:
 https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/ 
