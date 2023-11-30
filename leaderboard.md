@@ -44,7 +44,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
     const resultContainer = document.getElementById("result");
 
     // prepare fetch options
-    const url = "http://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
+    const url = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
     const headers = {
       method: 'GET',
       mode: 'cors',
@@ -109,7 +109,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
       const searchInput = document.getElementById("search").value;
 
       // Prepare fetch options with the search query
-      const url = "http://stocktify.stu.nighthawkcodingsociety.com/api/stocksearch?symbol=" + encodeURIComponent(searchInput);
+      const url = "https://stocktify.stu.nighthawkcodingsociety.com/api/stocksearch?symbol=" + encodeURIComponent(searchInput);
       const headers = {
         method: 'GET',
         mode: 'cors',
