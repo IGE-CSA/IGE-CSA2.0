@@ -14,7 +14,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
     <input type="text" id="username" placeholder="Enter your username">
     <br>
     <input type="text" id="score" placeholder="Enter your score">
-    <button id="create-btn">Create</button>
+    <button id="create-btn">Add</button>
 </div>
 
 
