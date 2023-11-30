@@ -10,11 +10,9 @@ Post Method:
 https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{score}
 -->
 
-
-
-<br>
-    <div id="username-input"><center>
-        <input type="text" id="username" placeholder="Enter your username">
-        <button id="create-btn">Create</button>
-        </center></div>
+<div>
+    <input type="text" id="username" placeholder="Enter your username">
     <br>
+    <input type="text" id="score" placeholder="Enter your score">
+    <button id="create-btn">Create</button>
+</div>
