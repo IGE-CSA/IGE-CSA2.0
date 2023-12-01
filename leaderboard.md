@@ -47,7 +47,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
     const url = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
     const headers = {
       method: 'GET',
-      mode: 'cors',
+      mode: 'no-cors',
       cache: 'default',
       credentials: 'omit',
       headers: {
