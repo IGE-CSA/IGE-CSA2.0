@@ -42,29 +42,39 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
   <!-- HTML remains the same -->
 
 <script>
-  // Function to fetch leaderboard data
-  function fetchLeaderboard() {
-    fetch("https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/", {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
+  const resultContainer = document.getElementById("result");
+  const leaderboardUrl = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  // Set a timeout to abort the fetch request
+  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 seconds
+
+  async function fetchLeaderboard() {
+    try {
+      const response = await fetch(leaderboardUrl, {
+        method: 'GET',
+        signal: signal,
+        mode: 'cors'
+      });
+
       if (!response.ok) {
         throw new Error('Network response was not ok: ' + response.statusText);
       }
-      return response.json();
-    })
-    .then(data => {
+
+      const data = await response.json();
       data.forEach(row => addRow(row));
-    })
-    .catch(error => {
-      console.error('Fetch error:', error);
-    });
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        resultContainer.innerHTML += `<div>Error: Request timed out</div>`;
+      } else {
+        resultContainer.innerHTML += `<div>Error: Could not retrieve leaderboard data</div>`;
+      }
+    } finally {
+      clearTimeout(timeoutId);
+    }
   }
 
-  // Function to add a row to the leaderboard
   function addRow(rowData) {
     const tr = document.createElement("tr");
     Object.values(rowData).forEach(val => {
@@ -75,41 +85,39 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
     resultContainer.appendChild(tr);
   }
 
-  // Fetch leaderboard data on page load
   document.addEventListener('DOMContentLoaded', fetchLeaderboard);
 
-  // Function to handle the submission of new leaderboard entries
-  function postLeaderboardEntry(username, score) {
+  // Event listener for posting new leaderboard entries
+  const addButton = document.getElementById("create-btn");
+  addButton.addEventListener('click', () => postLeaderboardEntry());
+
+  async function postLeaderboardEntry() {
+    const username = document.getElementById("username").value;
+    const score = document.getElementById("score").value;
     const postUrl = `https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/${encodeURIComponent(username)}/${encodeURIComponent(score)}`;
 
-    fetch(postUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
+    try {
+      const response = await fetch(postUrl, {
+        method: 'POST',
+        signal: signal,
+        mode: 'cors'
+      });
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return response.json();
-    })
-    .then(postResponse => {
+
+      const postResponse = await response.json();
       console.log('Posted successfully:', postResponse);
       fetchLeaderboard(); // Refresh the leaderboard
-    })
-    .catch(error => {
-      console.error('Error posting data:', error);
-    });
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.error('Error: Request timed out');
+      } else {
+        console.error('Error posting data:', error);
+      }
+    }
   }
-
-  // Event listener for the Add button
-  const addButton = document.getElementById("create-btn");
-  addButton.addEventListener('click', () => {
-    const username = document.getElementById("username").value;
-    const score = document.getElementById("score").value;
-    postLeaderboardEntry(username, score);
-  });
 </script>
 
 <!-- <script>
