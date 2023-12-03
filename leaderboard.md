@@ -42,14 +42,17 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
   <!-- HTML remains the same -->
 
 <script>
-  // Fetching Leaderboard Data
-  const resultContainer = document.getElementById("result");
-  const url = "http://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
-
-  fetch(url)
+  // Function to fetch leaderboard data
+  function fetchLeaderboard() {
+    fetch("https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
+        throw new Error('Network response was not ok: ' + response.statusText);
       }
       return response.json();
     })
@@ -59,7 +62,9 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
     .catch(error => {
       console.error('Fetch error:', error);
     });
+  }
 
+  // Function to add a row to the leaderboard
   function addRow(rowData) {
     const tr = document.createElement("tr");
     Object.values(rowData).forEach(val => {
@@ -70,29 +75,40 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
     resultContainer.appendChild(tr);
   }
 
-  // Posting New Entries
+  // Fetch leaderboard data on page load
+  document.addEventListener('DOMContentLoaded', fetchLeaderboard);
+
+  // Function to handle the submission of new leaderboard entries
+  function postLeaderboardEntry(username, score) {
+    const postUrl = `https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/${encodeURIComponent(username)}/${encodeURIComponent(score)}`;
+
+    fetch(postUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(postResponse => {
+      console.log('Posted successfully:', postResponse);
+      fetchLeaderboard(); // Refresh the leaderboard
+    })
+    .catch(error => {
+      console.error('Error posting data:', error);
+    });
+  }
+
+  // Event listener for the Add button
   const addButton = document.getElementById("create-btn");
   addButton.addEventListener('click', () => {
     const username = document.getElementById("username").value;
     const score = document.getElementById("score").value;
-    const postUrl = `http://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/${username}/${score}`;
-
-    fetch(postUrl, { method: 'POST' })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(postResponse => {
-        console.log(postResponse);
-        // Refresh the leaderboard or add the new row directly
-        // For simplicity, just refreshing the page for now
-        location.reload();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    postLeaderboardEntry(username, score);
   });
 </script>
 
