@@ -43,17 +43,34 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
     // prepare HTML result container for new output
     const resultContainer = document.getElementById("result");
 
-    // prepare fetch options
-    const url = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
-    const headers = {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'default',
-      signal: 'signal',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    };
+    // Create an instance of AbortController
+const controller = new AbortController();
+const signal = controller.signal;
+
+// Prepare your fetch request
+const url = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
+const headers = {
+  method: 'GET',
+  mode: 'cors',
+  cache: 'default',
+  signal: signal, // Use the signal from the AbortController
+  headers: {
+    'Content-Type': 'application/json'
+  },
+};
+
+// Execute the fetch request
+fetch(url, headers)
+  .then(response => {
+    // Handle the response
+  })
+  .catch(error => {
+    // Handle any errors
+    console.error('Fetch error:', error);
+  });
+
+// If you need to abort the request, you can call controller.abort()
+// controller.abort();
 
     // fetch the API
     fetch(url, headers)
