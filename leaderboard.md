@@ -39,91 +39,62 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
   <br>
   <br>
 
-  <script>
-    // prepare HTML result container for new output
-    const resultContainer = document.getElementById("result");
+  <!-- HTML remains the same -->
 
-    // Create an instance of AbortController
-const controller = new AbortController();
-const signal = controller.signal;
+<script>
+  // Fetching Leaderboard Data
+  const resultContainer = document.getElementById("result");
+  const url = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
 
-// Prepare your fetch request
-const url = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
-const headers = {
-  method: 'GET',
-  mode: 'cors',
-  cache: 'default',
-  signal: signal, // Use the signal from the AbortController
-  headers: {
-    'Content-Type': 'application/json'
-  },
-};
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(row => addRow(row));
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
 
-// Execute the fetch request
-fetch(url, headers)
-  .then(response => {
-    // Handle the response
-  })
-  .catch(error => {
-    // Handle any errors
-    console.error('Fetch error:', error);
+  function addRow(rowData) {
+    const tr = document.createElement("tr");
+    Object.values(rowData).forEach(val => {
+      const td = document.createElement("td");
+      td.textContent = val;
+      tr.appendChild(td);
+    });
+    resultContainer.appendChild(tr);
+  }
+
+  // Posting New Entries
+  const addButton = document.getElementById("create-btn");
+  addButton.addEventListener('click', () => {
+    const username = document.getElementById("username").value;
+    const score = document.getElementById("score").value;
+    const postUrl = `https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/${username}/${score}`;
+
+    fetch(postUrl, { method: 'POST' })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(postResponse => {
+        console.log(postResponse);
+        // Refresh the leaderboard or add the new row directly
+        // For simplicity, just refreshing the page for now
+        location.reload();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   });
-
-// If you need to abort the request, you can call controller.abort()
-// controller.abort();
-
-    // fetch the API
-    fetch(url, headers)
-      // response is a RESTful "promise" on any successful fetch
-      .then(response => {
-        console.log('Response Headers: ', response.headers);
-        // check for response errors
-        if (response.status !== 200) {
-          const errorMsg = 'Database response error: ' + response.status;
-          console.log(errorMsg);
-          const tr = document.createElement("tr");
-          const td = document.createElement("td");
-          td.innerHTML = errorMsg;
-          tr.appendChild(td);
-          resultContainer.appendChild(tr);
-          return;
-        }
-        // fetch the data from API
-        response.json().then(data => {
-          console.log(data);
-          for (let row in data) {
-            console.log(data[row]);
-            add_row(data[row]);
-          }
-        }).catch(err => {
-          console.error('Fetch error:', err);
-          const tr = document.createElement("tr");
-          const td = document.createElement("td");
-          td.innerHTML = err;
-          tr.appendChild(td);
-          resultContainer.appendChild(tr);
-        });
-      }).catch(err => {
-        console.error('Fetch error:', err);
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.innerHTML = err;
-        tr.appendChild(td);
-        resultContainer.appendChild(tr);
-      });
-
-    function add_row(rowData) {
-      const tr = document.createElement("tr");
-      for (let key in rowData) {
-        const td = document.createElement("td");
-        td.innerHTML = rowData[key];
-        tr.appendChild(td);
-      }
-      resultContainer.appendChild(tr);
-    }
-
-    
-  </script>
+</script>
 
 <!-- <script>
         const apiUrl = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
