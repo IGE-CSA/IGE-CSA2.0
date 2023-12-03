@@ -49,7 +49,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
       method: 'GET',
       mode: 'cors',
       cache: 'default',
-      credentials: 'omit',
+      signal: 'signal',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -59,6 +59,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
     fetch(url, headers)
       // response is a RESTful "promise" on any successful fetch
       .then(response => {
+        console.log('Response Headers: ', response.headers);
         // check for response errors
         if (response.status !== 200) {
           const errorMsg = 'Database response error: ' + response.status;
@@ -78,7 +79,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
             add_row(data[row]);
           }
         }).catch(err => {
-          console.error(err);
+          console.error('Fetch error:', err);
           const tr = document.createElement("tr");
           const td = document.createElement("td");
           td.innerHTML = err;
@@ -86,7 +87,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
           resultContainer.appendChild(tr);
         });
       }).catch(err => {
-        console.error(err);
+        console.error('Fetch error:', err);
         const tr = document.createElement("tr");
         const td = document.createElement("td");
         td.innerHTML = err;
