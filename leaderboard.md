@@ -44,7 +44,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
 <script>
   // Fetching Leaderboard Data
   const resultContainer = document.getElementById("result");
-  const url = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
+  const url = "http://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
 
   fetch(url)
     .then(response => {
@@ -75,7 +75,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
   addButton.addEventListener('click', () => {
     const username = document.getElementById("username").value;
     const score = document.getElementById("score").value;
-    const postUrl = `https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/${username}/${score}`;
+    const postUrl = `http://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/${username}/${score}`;
 
     fetch(postUrl, { method: 'POST' })
       .then(response => {
