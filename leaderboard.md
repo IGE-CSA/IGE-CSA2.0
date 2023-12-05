@@ -40,16 +40,12 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
   <br>
   <br>
 
-  <!-- HTML remains the same -->
-
+<!-- Getting leaderboard data -->
 <script>
   const resultContainer = document.getElementById("result");
   const leaderboardUrl = "http://localhost:8085/api/quizleaders/";
   const controller = new AbortController();
   const signal = controller.signal;
-
-//   // Set a timeout to abort the fetch request
-//   const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 seconds
 
   async function fetchLeaderboard() {
     try {
@@ -85,7 +81,13 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
   }
 
   document.addEventListener('DOMContentLoaded', fetchLeaderboard);
+</script>
 
+
+
+
+
+<script>
   // Event listener for posting new leaderboard entries
   const addButton = document.getElementById("create-btn");
   addButton.addEventListener('click', () => postLeaderboardEntry());
