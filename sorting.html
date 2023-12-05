@@ -131,7 +131,7 @@ title: Sorting
     </div>
     <!-- Add more columns as needed -->
   </div>
-  <button id="fillButton" onclick="waterBubble('water1', 'fillRate1'); waterInsertion('water2', 'fillRate2'); waterSelection('water3', 'fillRate3'); waterMerge('water4', 'fillRate4') ">Fill Beakers</button>
+  <button id="fillButton" onclick="waterBubble('water1'); waterInsertion('water2'); waterSelection('water3'); waterMerge('water4') ">Fill Beakers</button>
 
 
   <script>
@@ -174,36 +174,32 @@ title: Sorting
 
     document.addEventListener('DOMContentLoaded', fetchSort); 
 
-    function waterBubble(waterId, fillRateId) {
+    function waterBubble(waterId) {
       const water = document.getElementById(waterId);
-      const fillRate = document.getElementById(fillRateId).value;
       const duration = 10 / bubble; // Adjust the divisor for a suitable scale
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
 
-    function waterInsertion(waterId, fillRateId) {
+    function waterInsertion(waterId) {
       const water = document.getElementById(waterId);
-      const fillRate = document.getElementById(fillRateId).value;
       const duration = 10 / insert; // Adjust the divisor for a suitable scale
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
 
-    function waterSelection(waterId, fillRateId) {
+    function waterSelection(waterId) {
       const water = document.getElementById(waterId);
-      const fillRate = document.getElementById(fillRateId).value;
       const duration = 10 / selection; // Adjust the divisor for a suitable scale
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
 
-    function waterMerge(waterId, fillRateId) {s
+    function waterMerge(waterId) {s
       const water = document.getElementById(waterId);
-      const fillRate = document.getElementById(fillRateId).value;
       const duration = 10 / merge; // Adjust the divisor for a suitable scale
 
       water.style.transition = `height ${duration}s ease-in-out`;
