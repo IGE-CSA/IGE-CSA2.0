@@ -24,6 +24,19 @@ search_exclude: true
 
       const data = await response.json();
       console.log(data);
+
+      // creating variables
+      const bubble = data.bubbleSort;
+      console.log(bubble);
+      const insert = data['insertionSort'];
+      console.log(insert);
+      const merge = data['mergeSort'];
+      console.log(merge);
+      const selection = data['selectionSort'];
+      console.log(selection);
+
+
+
       data.forEach(row => addRow(row));
     } catch (error) {
       if (error.name === 'AbortError') {
