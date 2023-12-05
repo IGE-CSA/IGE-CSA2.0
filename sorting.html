@@ -135,8 +135,9 @@ title: Sorting
 
 
   <script>
-
-    let bubble, insert, merge, selection;
+    const sortUrl = "http://localhost:8085/api/sort/speeds";
+    const controller = new AbortController();
+    const signal = controller.signal;
 
      async function fetchSort() {
       try {
@@ -216,12 +217,6 @@ title: Sorting
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
-
-    const resultContainer = document.getElementById("result");
-    const sortUrl = "http://localhost:8085/api/sort/speeds";
-    const controller = new AbortController();
-    const signal = controller.signal;
-
       
   </script>
 </body>
