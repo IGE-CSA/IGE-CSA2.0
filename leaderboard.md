@@ -24,6 +24,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
         <table id="stock">
           <thead>
             <tr>
+              <th style="width:30%">ID</th>
               <th style="width:30%">Name</th>
               <th style="width:10%">Score</th>
             </tr>
