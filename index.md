@@ -9,6 +9,7 @@ search_exclude: true
   const controller = new AbortController();
   const signal = controller.signal;
 
+
   async function fetchLeaderboard() {
     try {
       const response = await fetch(leaderboardUrl, {
@@ -23,15 +24,27 @@ search_exclude: true
 
       const data = await response.json();
       console.log(data);
-
+      data.forEach(row => addRow(row));
     } catch (error) {
       if (error.name === 'AbortError') {
         resultContainer.innerHTML += `<div>Error: Request timed out</div>`;
       } else {
-        resultContainer.innerHTML += `<div>Error: Could not retrieve data</div>`;
+        resultContainer.innerHTML += `<div>Error: Could not retrieve leaderboard data</div>`;
       }
     } 
   }
+
+  function addRow(rowData) {
+    const tr = document.createElement("tr");
+    Object.values(rowData).forEach(val => {
+      const td = document.createElement("td");
+      td.textContent = val;
+      tr.appendChild(td);
+    });
+    resultContainer.appendChild(tr);
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchLeaderboard);
 </script>
 
 
