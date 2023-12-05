@@ -84,9 +84,8 @@ fetch('http://localhost:8085/api/sort/speeds')
         <table id="stock">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Score</th>
+              <th>Type</th>
+              <th>Speed</th>
             </tr>
           </thead>
           <tbody id="result">
