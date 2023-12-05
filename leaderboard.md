@@ -55,7 +55,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
       const response = await fetch(leaderboardUrl, {
         method: 'GET',
         signal: signal,
-        mode: 'no-cors'
+        mode: 'cors'
       });
 
       if (!response.ok) {
