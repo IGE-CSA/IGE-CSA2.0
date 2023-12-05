@@ -155,13 +155,13 @@ title: Sorting
 
         // creating variables
         const bubble = data['bubbleSort'];
-        console.log(typeof bubble);
+        console.log( bubble);
         const insert = data['insertionSort'];
-        console.log(typeof insert);
+        console.log( insert);
         const merge = data['mergeSort'];
-        console.log(typeof merge);
+        console.log( merge);
         const selection = data['selectionSort'];
-        console.log(typeof selection);
+        console.log( selection);
 
 
 
@@ -181,6 +181,7 @@ title: Sorting
       const water = document.getElementById(waterId);
       // const duration = 10 / bubble; // Adjust the divisor for a suitable scale
       const duration = bubble;
+      console.log("Bubble duration: " + bubble);
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -190,6 +191,7 @@ title: Sorting
       const water = document.getElementById(waterId);
       // const duration = 10 / insert; // Adjust the divisor for a suitable scale
       const duration = insert;
+      console.log("Insert duration: " + insert);
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -199,6 +201,7 @@ title: Sorting
       const water = document.getElementById(waterId);
       // const duration = 10 / selection; // Adjust the divisor for a suitable scale
       const duration = selection;
+      console.log("Selection duration: " + selection);
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -208,6 +211,7 @@ title: Sorting
       const water = document.getElementById(waterId);
       // const duration = 10 / merge; // Adjust the divisor for a suitable scale
       const duration = merge;
+      console.log("Merge duration: " + merge);
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
