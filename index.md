@@ -37,7 +37,7 @@ fetch('http://localhost:8085/api/sort/speeds')
 <!-- Getting leaderboard data -->
 <script>
   const resultContainer = document.getElementById("result");
-  const leaderboardUrl = "http://localhost:8085/api/quizleaders/";
+  const leaderboardUrl = "http://localhost:8085/api/sort/speeds";
   const controller = new AbortController();
   const signal = controller.signal;
 
