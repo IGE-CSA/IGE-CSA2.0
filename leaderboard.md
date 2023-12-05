@@ -43,7 +43,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
 
 <script>
   const resultContainer = document.getElementById("result");
-  const leaderboardUrl = "https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/";
+  const leaderboardUrl = "http://localhost:8085/api/quizleaders/";
   const controller = new AbortController();
   const signal = controller.signal;
 
@@ -55,7 +55,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
       const response = await fetch(leaderboardUrl, {
         method: 'GET',
         signal: signal,
-        mode: 'cors'
+        mode: 'no-cors'
       });
 
       if (!response.ok) {
