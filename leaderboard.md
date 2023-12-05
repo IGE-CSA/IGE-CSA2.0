@@ -95,13 +95,17 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
   async function postLeaderboardEntry() {
     const username = document.getElementById("username").value;
     const score = document.getElementById("score").value;
-    const postUrl = `https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/${encodeURIComponent(username)}/${encodeURIComponent(score)}`;
+    const postUrl = `http://localhost:8085/api/quizleaders/post/${encodeURIComponent(username)}/${encodeURIComponent(score)}`;
 
     try {
       const response = await fetch(postUrl, {
         method: 'POST',
         signal: signal,
-        mode: 'cors'
+        mode: 'cors',
+        headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer my-token'
+        }
       });
 
       if (!response.ok) {
