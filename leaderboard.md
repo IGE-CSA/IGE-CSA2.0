@@ -47,8 +47,8 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
   const controller = new AbortController();
   const signal = controller.signal;
 
-  // Set a timeout to abort the fetch request
-  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 seconds
+//   // Set a timeout to abort the fetch request
+//   const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 seconds
 
   async function fetchLeaderboard() {
     try {
