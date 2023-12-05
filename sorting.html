@@ -110,32 +110,24 @@ title: Sorting
         <div class="water1" id="water1"></div>
       </div>
       <!-- print seconds instead of fill rate -->
-      <label for="fillRate1">Fill Rate:</label>
-      <input type="range" class="fillRate" id="fillRate1" min="1" max="10" value="5">
     </div>
     <div class="column">
       <h2>Insertion</h2>
       <div class="beaker">
         <div class="water2" id="water2"></div>
       </div>
-      <label for="fillRate2">Fill Rate:</label>
-      <input type="range" class="fillRate" id="fillRate2" min="1" max="10" value="5">
     </div>
     <div class="column">
       <h2>Selection</h2>
       <div class="beaker">
         <div class="water3" id="water3"></div>
       </div>
-      <label for="fillRate3">Fill Rate:</label>
-      <input type="range" class="fillRate" id="fillRate3" min="1" max="10" value="5">
     </div>
     <div class="column">
       <h2>Merge</h2>
       <div class="beaker">
         <div class="water4" id="water4"></div>
       </div>
-      <label for="fillRate4">Fill Rate:</label>
-      <input type="range" class="fillRate" id="fillRate4" min="1" max="10" value="5">
     </div>
     <!-- Add more columns as needed -->
   </div>
@@ -179,8 +171,51 @@ title: Sorting
       water.style.height = '100%';
     }
 
+    const resultContainer = document.getElementById("result");
+    const sortUrl = "http://localhost:8085/api/sort/speeds";
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-    
+
+    async function fetchSort() {
+      try {
+        const response = await fetch(sortUrl, {
+          method: 'GET',
+          signal: signal,
+          mode: 'cors'
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        // creating variables
+        const bubble = data['bubbleSort'];
+        console.log(bubble);
+        const insert = data['insertionSort'];
+        console.log(insert);
+        const merge = data['mergeSort'];
+        console.log(merge);
+        const selection = data['selectionSort'];
+        console.log(selection);
+
+
+
+        data.forEach(row => addRow(row));
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          resultContainer.innerHTML += `<div>Error: Request timed out</div>`;
+        } else {
+          resultContainer.innerHTML += `<div>Error: Could not retrieve sort data</div>`;
+        }
+      } 
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchSort);
+      
   </script>
 </body>
 </html>
