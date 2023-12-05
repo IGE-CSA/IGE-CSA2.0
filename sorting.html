@@ -179,7 +179,8 @@ title: Sorting
 
     function waterBubble(waterId) {
       const water = document.getElementById(waterId);
-      const duration = 10 / bubble; // Adjust the divisor for a suitable scale
+      // const duration = 10 / bubble; // Adjust the divisor for a suitable scale
+      const duration = 1;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -187,7 +188,8 @@ title: Sorting
 
     function waterInsertion(waterId) {
       const water = document.getElementById(waterId);
-      const duration = 10 / insert; // Adjust the divisor for a suitable scale
+      // const duration = 10 / insert; // Adjust the divisor for a suitable scale
+      const duration = 5;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -195,7 +197,8 @@ title: Sorting
 
     function waterSelection(waterId) {
       const water = document.getElementById(waterId);
-      const duration = 10 / selection; // Adjust the divisor for a suitable scale
+      // const duration = 10 / selection; // Adjust the divisor for a suitable scale
+      const duration = 10;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -203,7 +206,8 @@ title: Sorting
 
     function waterMerge(waterId) {
       const water = document.getElementById(waterId);
-      const duration = 10 / merge; // Adjust the divisor for a suitable scale
+      // const duration = 10 / merge; // Adjust the divisor for a suitable scale
+      const duration = 20;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
