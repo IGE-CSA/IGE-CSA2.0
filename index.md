@@ -5,14 +5,14 @@ search_exclude: true
 
 <script>
   const resultContainer = document.getElementById("result");
-  const leaderboardUrl = "http://localhost:8085/api/sort/speeds";
+  const sortUrl = "http://localhost:8085/api/sort/speeds";
   const controller = new AbortController();
   const signal = controller.signal;
 
 
-  async function fetchLeaderboard() {
+  async function fetchSort() {
     try {
-      const response = await fetch(leaderboardUrl, {
+      const response = await fetch(sortUrl, {
         method: 'GET',
         signal: signal,
         mode: 'cors'
@@ -26,7 +26,7 @@ search_exclude: true
       console.log(data);
 
       // creating variables
-      const bubble = data.bubbleSort;
+      const bubble = data['bubbleSort'];
       console.log(bubble);
       const insert = data['insertionSort'];
       console.log(insert);
@@ -42,10 +42,10 @@ search_exclude: true
       if (error.name === 'AbortError') {
         resultContainer.innerHTML += `<div>Error: Request timed out</div>`;
       } else {
-        resultContainer.innerHTML += `<div>Error: Could not retrieve leaderboard data</div>`;
+        resultContainer.innerHTML += `<div>Error: Could not retrieve sort data</div>`;
       }
     } 
   }
 
-  document.addEventListener('DOMContentLoaded', fetchLeaderboard);
+  document.addEventListener('DOMContentLoaded', fetchSort);
 </script>
