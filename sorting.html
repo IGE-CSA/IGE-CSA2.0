@@ -138,7 +138,7 @@ title: Sorting
     function waterBubble(waterId, fillRateId) {
       const water = document.getElementById(waterId);
       const fillRate = document.getElementById(fillRateId).value;
-      const duration = 10 / fillRate; // Adjust the divisor for a suitable scale
+      const duration = 10 / bubble; // Adjust the divisor for a suitable scale
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -147,7 +147,7 @@ title: Sorting
     function waterInsertion(waterId, fillRateId) {
       const water = document.getElementById(waterId);
       const fillRate = document.getElementById(fillRateId).value;
-      const duration = 10 / fillRate; // Adjust the divisor for a suitable scale
+      const duration = 10 / insert; // Adjust the divisor for a suitable scale
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -156,16 +156,16 @@ title: Sorting
     function waterSelection(waterId, fillRateId) {
       const water = document.getElementById(waterId);
       const fillRate = document.getElementById(fillRateId).value;
-      const duration = 10 / fillRate; // Adjust the divisor for a suitable scale
+      const duration = 10 / selection; // Adjust the divisor for a suitable scale
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
 
-    function waterMerge(waterId, fillRateId) {
+    function waterMerge(waterId, fillRateId) {s
       const water = document.getElementById(waterId);
       const fillRate = document.getElementById(fillRateId).value;
-      const duration = 10 / fillRate; // Adjust the divisor for a suitable scale
+      const duration = 10 / merge; // Adjust the divisor for a suitable scale
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
