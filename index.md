@@ -34,33 +34,5 @@ search_exclude: true
     } 
   }
 
-  function addRow(rowData) {
-    const tr = document.createElement("tr");
-    Object.values(rowData).forEach(val => {
-      const td = document.createElement("td");
-      td.textContent = val;
-      tr.appendChild(td);
-    });
-    resultContainer.appendChild(tr);
-  }
-
   document.addEventListener('DOMContentLoaded', fetchLeaderboard);
 </script>
-
-
-  <div>
-    <section class="team1">
-      <main id="content" class="main-content" role="main">
-        <table id="stock">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Speed</th>
-            </tr>
-          </thead>
-          <tbody id="result">
-          </tbody>
-        </table>
-      </main>
-    </section>
-  </div>
