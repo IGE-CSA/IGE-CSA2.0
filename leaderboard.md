@@ -94,9 +94,9 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
 
   async function postLeaderboardEntry() {
     const username = document.getElementById("username").value;
-    console.log(username)
+    console.log(username);
     const score = document.getElementById("score").value;
-c   onsole.log(score)
+    console.log(score);
     const postUrl = `http://localhost:8085/api/quizleaders/post/${encodeURIComponent(username)}/${encodeURIComponent(score)}`;
 
     try {
