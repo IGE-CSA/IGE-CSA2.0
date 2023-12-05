@@ -137,7 +137,7 @@ title: Sorting
   <script>
 
     let bubble, insert, merge, selection;
-    
+
     const resultContainer = document.getElementById("result");
     const sortUrl = "http://localhost:8085/api/sort/speeds";
     const controller = new AbortController();
@@ -160,14 +160,14 @@ title: Sorting
         console.log(data);
 
         // creating variables
-        const bubble = data['bubbleSort'];
-        console.log( bubble);
-        const insert = data['insertionSort'];
-        console.log( insert);
-        const merge = data['mergeSort'];
-        console.log( merge);
-        const selection = data['selectionSort'];
-        console.log( selection);
+        bubble = data['bubbleSort'];
+        console.log(bubble);
+        insert = data['insertionSort'];
+        console.log(insert);
+        merge = data['mergeSort'];
+        console.log(merge);
+        selection = data['selectionSort'];
+        console.log(selection);
 
 
 
