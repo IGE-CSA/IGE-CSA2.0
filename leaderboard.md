@@ -70,9 +70,7 @@ https://ige-backend.stu.nighthawkcodingsociety.com/api/quizleaders/post/{name}/{
       } else {
         resultContainer.innerHTML += `<div>Error: Could not retrieve leaderboard data</div>`;
       }
-//     } finally {
-//       clearTimeout(timeoutId);
-//     }
+    } 
   }
 
   function addRow(rowData) {
