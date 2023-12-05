@@ -23,8 +23,15 @@ search_exclude: true
 
       const data = await response.json();
       console.log(data);
-      }
-}
+
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        resultContainer.innerHTML += `<div>Error: Request timed out</div>`;
+      } else {
+        resultContainer.innerHTML += `<div>Error: Could not retrieve data</div>`;
+      }
+    } 
+  }
 </script>
 
 
