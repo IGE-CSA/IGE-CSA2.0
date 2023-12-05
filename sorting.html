@@ -36,11 +36,12 @@ title: Sorting
         position: relative;
         width: 100px;
         height: 200px;
-        background-color: #ccc;
-        border: 5px solid #999;
+        background-color: white;
+        border: 1px solid #999;
         border-radius: 5px;
         overflow: hidden;
         margin-bottom: 20px;
+        display: inline-block;
     }
 
     .water {
@@ -72,38 +73,41 @@ title: Sorting
     <div class="column">
         <h2>Bubble</h2>
         <div class="beaker">
-        <div class="water" id="water"></div>
+        <div class="water" id="water1"></div>
         </div>
-        <label for="fillRate">Fill Rate:</label>
+        <label for="fillRate1">Fill Rate:</label>
         <input type="range" id="fillRate" min="1" max="10" value="5">
     </div>
     <div class="column">
       <h2>Insertion</h2>
         <div class="beaker">
-        <div class="water" id="water"></div>
+        <div class="water" id="water2"></div>
         </div>
-        <label for="fillRate">Fill Rate:</label>
+        <label for="fillRate2">Fill Rate:</label>
         <input type="range" id="fillRate" min="1" max="10" value="5">
     </div>
     <div class="column">
       <h2>Selection</h2>
         <div class="beaker">
-        <div class="water" id="water"></div>
+        <div class="water" id="water3"></div>
         </div>
-        <label for="fillRate">Fill Rate:</label>
+        <label for="fillRate3">Fill Rate:</label>
         <input type="range" id="fillRate" min="1" max="10" value="5">
     </div>
     <div class="column">
       <h2>Merge</h2>
         <div class="beaker">
-        <div class="water" id="water"></div>
+        <div class="water" id="water4"></div>
         </div>
-        <label for="fillRate">Fill Rate:</label>
+        <label for="fillRate4">Fill Rate:</label>
         <input type="range" id="fillRate" min="1" max="10" value="5">
     </div>
     <!-- Add more columns as needed -->
   </div>
-  <button id="fillButton" onclick="fillWater()">Fill Beaker</button>
+  <button id="fillButton" onclick="fillWaterBubble()">Fill Beaker</button>
+  <button id="fillButton" onclick="fillWaterInsertion()">Fill Beaker</button>
+  <button id="fillButton" onclick="fillWaterSelection()">Fill Beaker</button>
+  <button id="fillButton" onclick="fillWaterMerge()">Fill Beaker</button>
 </body>
 </html>
 
@@ -114,9 +118,36 @@ title: Sorting
 
 
 <script>
-function fillWater() {
-    const water = document.getElementById('water');
-    const fillRate = document.getElementById('fillRate').value;
+function fillWaterBubble() {
+    const water = document.getElementById('water1');
+    const fillRate = document.getElementById('fillRate1').value;
+    const duration = 10 / fillRate; // Adjust the divisor for a suitable scale
+
+    water.style.transition = `height ${duration}s ease-in-out`;
+    water.style.height = '100%';
+}
+
+function fillWaterInsertion() {
+    const water = document.getElementById('water2');
+    const fillRate = document.getElementById('fillRate2').value;
+    const duration = 10 / fillRate; // Adjust the divisor for a suitable scale
+
+    water.style.transition = `height ${duration}s ease-in-out`;
+    water.style.height = '100%';
+}
+
+function fillWaterSelection() {
+    const water = document.getElementById('water3');
+    const fillRate = document.getElementById('fillRate3').value;
+    const duration = 10 / fillRate; // Adjust the divisor for a suitable scale
+
+    water.style.transition = `height ${duration}s ease-in-out`;
+    water.style.height = '100%';
+}
+
+function fillWaterMerge() {
+    const water = document.getElementById('water4');
+    const fillRate = document.getElementById('fillRate4').value;
     const duration = 10 / fillRate; // Adjust the divisor for a suitable scale
 
     water.style.transition = `height ${duration}s ease-in-out`;
