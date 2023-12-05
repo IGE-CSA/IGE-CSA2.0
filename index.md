@@ -3,7 +3,7 @@ layout: default
 search_exclude: true
 ---  
 
-<script>
+<!-- <script>
 // Make a GET request to the backend endpoint
 fetch('http://localhost:8085/api/sort/speeds')
   .then(response => {
@@ -31,7 +31,7 @@ fetch('http://localhost:8085/api/sort/speeds')
   .catch(error => {
     console.error('Error fetching data:', error);
   });
-</script>
+</script> -->
 
 
 <!-- Getting leaderboard data -->
