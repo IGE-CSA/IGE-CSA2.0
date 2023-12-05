@@ -66,6 +66,9 @@ title: Sorting
       color: #fff;
       border: none;
       border-radius: 5px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
     }
   </style>
 </head>
@@ -105,10 +108,8 @@ title: Sorting
     </div>
     <!-- Add more columns as needed -->
   </div>
-  <button id="fillButton" onclick="fillWater('water1', 'fillRate1')">Fill Beaker Bubble</button>
-  <button id="fillButton" onclick="fillWater('water2', 'fillRate2')">Fill Beaker Insertion</button>
-  <button id="fillButton" onclick="fillWater('water3', 'fillRate3')">Fill Beaker Selection</button>
-  <button id="fillButton" onclick="fillWater('water4', 'fillRate4')">Fill Beaker Merge</button>
+  <button id="fillButton" onclick="fillWater('water1', 'fillRate1'); fillWater('water2', 'fillRate2'); fillWater('water3', 'fillRate3'); fillWater('water4', 'fillRate4') ">Fill Beakers</button>
+
 
   <script>
     function fillWater(waterId, fillRateId) {
