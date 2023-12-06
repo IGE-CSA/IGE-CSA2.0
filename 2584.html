@@ -51,8 +51,9 @@ title: 2584
         }
         /* Styles for winning and losing messages */
         #game-output {
+            text-align: center;
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 50px;
             font-weight: bold;
             color: #333;
         }
@@ -64,52 +65,8 @@ title: 2584
 </head>
 <body>
 
-<!-- Display game instructions -->
-<div>
-    <h2>Instructions:</h2>
-    <p>
-        <b>Goal:</b> Reach the last number in the Fibonacci series on the game board (Last number number = (num rows * num columns) - 1 --> index number in the array of Fibonacci numbers). For our 3 by 3 grid, you must reach the Fibonacci number 34 to win.
-    </p>
-    <p>
-        <b>How to Play:</b>
-        <br>
-        1. Start the Game:
-        <ul>
-            <li>The game board is initially filled with two randomly placed 1s.</li>
-            <li>The Fibonacci series begins with 1, 1.</li>
-        </ul>
-        <br>
-        2. Make a Move:
-        <ul>
-            <li>Use the arrow keys (up, down, left, right) to move the numbers.</li>
-            <li>Use the keyboard arrows to move the numbers up, down, left, or right.</li>
-            <li>The numbers will move in the chosen direction, and the game board will be updated.</li>
-        </ul>
-        <br>
-        3. Combine Numbers:
-        <ul>
-            <li>When two adjacent non-zero numbers are moved into each other's path, they will combine into a new number.</li>
-            <li>The new number must be part of the Fibonacci series.</li>
-        </ul>
-        <br>
-        4. Winning/Losing:
-        <ul>
-            <li>Winning: The game is won when the last number in the Fibonacci series appears on the board.</li>
-            <li>Losing: The game is lost when there are no available spaces to fill with new 1s.</li>
-        </ul>
-        <br>
-        5. Scoreboard:
-        <ul>
-            <li>After you have won/lost, your total score (sum of all the Fibonacci numbers on your final board) will be saved and displayed on our player scoreboard.</li>
-        </ul>
-        <br>
-        Array of Fibonacci numbers for reference: 1, 2, 3, 5, 8, 13, 21, 34
-    </p>
-</div>
-
 <!-- Display the game -->
 <div>
-    <h2>Use the keyboard arrows to start playing!</h2>
     <pre id="game-output"></pre>
     <!-- Use a hidden input to capture arrow key events -->
     <input type="hidden" id="user-input">
@@ -117,16 +74,7 @@ title: 2584
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    const apiUrl = "https://cosmic-backend.stu.nighthawkcodingsociety.com/api/quiz/";
-        const options = {
-            method: 'GET',
-            mode: 'cors',
-            cache: 'default',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
+    
     // JavaScript implementation of the game
     let userName = "";
     let board = generateBoard();
@@ -243,24 +191,6 @@ title: 2584
         if (['up', 'down', 'left', 'right'].includes(direction)) {
             movDir(direction);
         }
-    }
-
-    function postUserData(userName, totalScore) {
-        fetch('http://ige-backend.stu.nighthawkcodingsociety.com', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ userName: userName, totalScore: totalScore }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Data sent successfully:', data);
-            // You can handle the response from the server if needed
-        })
-        .catch(error => {
-            console.error('Error sending data:', error);
-        });
     }
 
     function movDir(dir) {
@@ -424,6 +354,46 @@ title: 2584
 
 </script>
 
-</body>
-</html>
 
+<!-- Display game instructions -->
+<div>
+    <h2>Instructions:</h2>
+    <p>
+        <b>Goal:</b> Reach the last number in the Fibonacci series on the game board (Last number number = (num rows * num columns) - 1 --> index number in the array of Fibonacci numbers). For our 3 by 3 grid, you must reach the Fibonacci number 34 to win.
+    </p>
+    <p>
+        <b>How to Play:</b>
+        <br>
+        1. Start the Game:
+        <ul>
+            <li>The game board is initially filled with two randomly placed 1s.</li>
+            <li>The Fibonacci series begins with 1, 1.</li>
+        </ul>
+        <br>
+        2. Make a Move:
+        <ul>
+            <li>Use the arrow keys (up, down, left, right) to move the numbers.</li>
+            <li>Use the keyboard arrows to move the numbers up, down, left, or right.</li>
+            <li>The numbers will move in the chosen direction, and the game board will be updated.</li>
+        </ul>
+        <br>
+        3. Combine Numbers:
+        <ul>
+            <li>When two adjacent non-zero numbers are moved into each other's path, they will combine into a new number.</li>
+            <li>The new number must be part of the Fibonacci series.</li>
+        </ul>
+        <br>
+        4. Winning/Losing:
+        <ul>
+            <li>Winning: The game is won when the last number in the Fibonacci series appears on the board.</li>
+            <li>Losing: The game is lost when there are no available spaces to fill with new 1s.</li>
+        </ul>
+        <br>
+        5. Scoreboard:
+        <ul>
+            <li>After you have won/lost, your total score (sum of all the Fibonacci numbers on your final board) will be saved and displayed on our player scoreboard.</li>
+        </ul>
+        <br>
+        Array of Fibonacci numbers for reference: 1, 2, 3, 5, 8, 13, 21, 34
+    </p>
+</div>
