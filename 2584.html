@@ -65,6 +65,8 @@ title: 2584
 </head>
 <body>
 
+
+
 <!-- Display the game -->
 <div>
     <pre id="game-output"></pre>
@@ -73,6 +75,49 @@ title: 2584
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+      // Event listener for posting new leaderboard entries
+      const addButton = document.getElementById("create-btn");
+      addButton.addEventListener('click', () => postLeaderboardEntry());
+    
+     function postLeaderboardEntry() {
+        const username = document.getElementById("username").value;
+        console.log("Added " + username);
+        const score = document.getElementById("score").value;
+        console.log("Added " + score);
+        const postUrl = `http://localhost:8085/api/quizleaders/post/${encodeURIComponent(username)}/${encodeURIComponent(score)}`;
+    
+        try {
+          const response = fetch(postUrl, {
+            method: 'POST',
+            signal: signal,
+            mode: 'cors',
+            headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer my-token'
+            }
+          });
+    
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+    
+          const postResponse = response.json();
+          console.log('Posted successfully:', postResponse);
+          fetchLeaderboard(); // Refresh the leaderboard
+        } catch (error) {
+          if (error.name === 'AbortError') {
+            console.error('Error: Request timed out');
+          } else {
+            console.error('Error posting data:', error);
+          }
+        }
+      }
+    </script>
+
+
 <script>
     
     // JavaScript implementation of the game
@@ -246,7 +291,7 @@ title: 2584
             userName = promptForUserName("Congratulations! You reached the last Fibonnaci number 34! Enter your name to save your score:");
 
             // Post user data to the backend
-            postUserData(userName, totalScore);
+            postLeaderboardEntry(userName, totalScore);
 
             console.log(userName)
         }
