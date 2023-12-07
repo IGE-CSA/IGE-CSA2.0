@@ -122,7 +122,7 @@ title: Sorting
       <div class="beaker">
         <div class="water1" id="water1"></div>
       </div>
-      <p id="bubbleSwap, "></p>
+      <p id="bubbleSwap"></p>
     </div>
     <!-- insertion -->
     <div class="column">
@@ -148,8 +148,29 @@ title: Sorting
       </div>
       <p id="mergeSwap"></p>
     </div>
-    <!-- Add more columns as needed -->
+
+    <p>Number of Swaps</p>
+
+    <div class="container-flex">
+      <!-- bubble -->
+      <div class="column">
+        <p id="bubbleSwap"></p>
+      </div>
+      <!-- insertion -->
+      <div class="column">
+        <p id="insertionSwap"></p>
+      </div>
+      <!-- selection -->
+      <div class="column">
+      <p id="selectionSwap"></p>
+      </div>
+      <!-- merge -->
+      <div class="column">
+        <p id="mergeSwap"></p>
+      </div>
   </div>
+
+  
   <button id="fillButton" onclick="waterBubble('water1'); waterInsertion('water2'); waterSelection('water3'); waterMerge('water4') ">Fill Beakers</button>
   <br>
   <button id="resetButton">Reset Page</button>
