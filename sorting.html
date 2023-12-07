@@ -177,7 +177,7 @@ title: Sorting
     let bubble, insert, merge, selection;
 
     const resultContainer = document.getElementById("result");
-    const sortUrl = "http://localhost:8085/api/finalsort/speeds+swaps";
+    const sortUrl = "http://localhost:8085/api/finalsort/everything";
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -198,18 +198,26 @@ title: Sorting
         console.log(data);
 
         // creating variables
-        bubble = data['bubbleSort'];
-        console.log("Bubble sort: " + bubble);
 
-        insert = data['insertionSort'];
-        console.log("Insertion sort: " + insert);
+        // Speed
+        bubbleSpeed = data['bubbleSpeed'];
+        console.log("Bubble speed: " + bubbleSpeed);
+        document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
 
-        merge = data['mergeSort'];
-        console.log("Merge sort: " + merge);
+        insertSpeed = data['insertionSpeed'];
+        console.log("Insertion speed: " + insertSpeed);
+        document.getElementById('bubbleSpeed').innerHTML = insertSpeed;
 
-        selection = data['selectionSort'];
-        console.log("Selection sort: " + selection);
+        mergeSpeed = data['mergeSpeed'];
+        console.log("Merge speed: " + mergeSpeed);
+        document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
 
+        selectionSpeed = data['selectionSpeed'];
+        console.log("Selection speed: " + selectionSpeed);
+        document.getElementById('selectionSpeed').innerHTML = selectionSpeed;
+
+
+        // Swap
         bubbleSwaps = data['bubbleSwap'];
         console.log("Bubble Swap: " + bubbleSwaps);
         document.getElementById('bubbleSwap').innerHTML = bubbleSwaps;
@@ -225,6 +233,42 @@ title: Sorting
         selectionSwaps = data['selectionSwap'];
         console.log("Selection Swaps: " + selectionSwaps);
         document.getElementById('selectionSwap').innerHTML = selectionSwaps;
+
+        // Comparisons
+        bubbleComparisons = data['bubbleComp'];
+        console.log("Bubble Comp: " + bubbleComparisons);
+        document.getElementById('bubbleComp').innerHTML = bubbleComparisons;
+
+        insertComparisons = data['insertionComp'];
+        console.log("Insertion Comp: " + insertComparisons);
+        document.getElementById('insertionComp').innerHTML = insertComparisons;
+
+        mergeComparisons = data['mergeComp'];
+        console.log("Merge Comp: " + mergeComparisons);
+        document.getElementById('mergeComp').innerHTML = mergeComparisons;
+
+        selectionComparisons = data['selectionComp'];
+        console.log("Selection Comps: " + selectionComparisons);
+        document.getElementById('selectionComp').innerHTML = selectionComparisons;
+
+
+        // Iterations
+        bubbleIterations = data['bubbleIterations'];
+        console.log("Bubble Iteration: " + bubbleIterations);
+        document.getElementById('bubbleIterations').innerHTML = bubbleIterations;
+
+        insertIterations = data['insertionIterations'];
+        console.log("Insertion Iteration: " + insertIterations);
+        document.getElementById('insertionIterations').innerHTML = insertIterations;
+
+        mergeIterations = data['mergeIterations'];
+        console.log("Merge Iteration: " + mergeIterations);
+        document.getElementById('mergeIterations').innerHTML = mergeIterations;
+
+        selectionIterations = data['selectionIterations'];
+        console.log("Selection Iterations: " + selectionIterations);
+        document.getElementById('selectionIterations').innerHTML = selectionIterations;
+
 
 
 
