@@ -104,31 +104,37 @@ title: Sorting
 </head>
 <body>
   <div class="container-flex">
+    <!-- bubble -->
     <div class="column">
       <h2>Bubble</h2>
       <div class="beaker">
         <div class="water1" id="water1"></div>
       </div>
-      <p id="output"></p>
-      <!-- print seconds instead of fill rate -->
+      <p id="bubbleSwap"></p>
     </div>
+    <!-- insertion -->
     <div class="column">
       <h2>Insertion</h2>
       <div class="beaker">
         <div class="water2" id="water2"></div>
       </div>
+      <p id="insertionSwap"></p>
     </div>
+    <!-- selection -->
     <div class="column">
       <h2>Selection</h2>
       <div class="beaker">
         <div class="water3" id="water3"></div>
       </div>
+    <p id="selectionSwap"></p>
     </div>
+    <!-- merge -->
     <div class="column">
       <h2>Merge</h2>
       <div class="beaker">
         <div class="water4" id="water4"></div>
       </div>
+      <p id="mergeSwap"></p>
     </div>
     <!-- Add more columns as needed -->
   </div>
@@ -167,7 +173,6 @@ title: Sorting
         // creating variables
         bubble = data['bubbleSort'];
         console.log(bubble);
-        document.getElementById('output').innerHTML = bubble;
         insert = data['insertionSort'];
         console.log(insert);
         merge = data['mergeSort'];
@@ -233,7 +238,7 @@ title: Sorting
     let bubbleSwaps, insertSwaps, mergeSwaps, selectionSwaps;
 
     const resultContainer2 = document.getElementById("result");
-    const swapUrl = "http://localhost:8085/api/finalsort/speeds";
+    const swapUrl = "http://localhost:8085/api/finalsort/swaps";
     const controller2 = new AbortController();
     const signal2 = controller2.signal;
 
@@ -256,12 +261,16 @@ title: Sorting
         // creating variables
         bubbleSwaps = data['bubbleSort'];
         console.log(bubble);
+        document.getElementById('bubbleSwap').innerHTML = bubble;
         insertSwaps = data['insertionSort'];
         console.log(insert);
+        document.getElementById('insertionSwap').innerHTML = bubble;
         mergeSwaps = data['mergeSort'];
         console.log(merge);
-        selectionSwaps = data['selectionSort'];
+        document.getElementById('mergeSwap').innerHTML = bubble;
+        selectionSwaps = data['selectionSwap'];
         console.log(selection);
+        document.getElementById('selectionSwap').innerHTML = bubble;
 
 
 
