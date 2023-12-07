@@ -173,12 +173,31 @@ title: Sorting
         // creating variables
         bubble = data['bubbleSort'];
         console.log("Bubble sort: " + bubble);
+
         insert = data['insertionSort'];
         console.log("Insertion sort: " + insert);
+
         merge = data['mergeSort'];
         console.log("Merge sort: " + merge);
+
         selection = data['selectionSort'];
         console.log("Selection sort: " + selection);
+
+        bubbleSwaps = data['bubbleSwap'];
+        console.log("Bubble Swap: " + bubbleSwaps);
+        document.getElementById('bubbleSwap').innerHTML = bubbleSwaps;
+
+        insertSwaps = data['insertionSwap'];
+        console.log("Insertion Swap: "+ insertSwaps);
+        document.getElementById('insertionSwap').innerHTML = insertSwaps;
+
+        mergeSwaps = data['mergeSwap'];
+        console.log("Merge Swap" + mergeSwaps);
+        document.getElementById('mergeSwap').innerHTML = mergeSwaps;
+
+        selectionSwaps = data['selectionSwap'];
+        console.log("Selection Swaps: " + selectionSwaps);
+        document.getElementById('selectionSwap').innerHTML = selectionSwaps;
 
 
 
@@ -230,55 +249,6 @@ title: Sorting
       water.style.height = '100%';
     }
 
-
-    let bubbleSwaps, insertSwaps, mergeSwaps, selectionSwaps;
-
-    const resultContainer2 = document.getElementById("result");
-    const swapUrl = "http://localhost:8085/api/finalsort/swaps";
-    const controller2 = new AbortController();
-    const signal2 = controller2.signal;
-
-
-  async function fetchSwap() {
-      try {
-        const response = await fetch(swapUrl, {
-          method: 'GET',
-          signal: signal,
-          mode: 'cors'
-        });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok: ' + response.statusText);
-        }
-
-        const data2 = await response.json();
-        console.log(data2);
-
-        // creating variables
-        bubbleSwaps = data2['bubbleSort'];
-        console.log("Bubble Swap: " + bubbleSwaps);
-        document.getElementById('bubbleSwap').innerHTML = bubbleSwaps;
-        insertSwaps = data2['insertionSort'];
-        console.log("Insertion Swap: "+ insertSwaps);
-        document.getElementById('insertionSwap').innerHTML = insertSwaps;
-        mergeSwaps = data2['mergeSort'];
-        console.log("Merge Swap" + mergeSwaps);
-        document.getElementById('mergeSwap').innerHTML = mergeSwaps;
-        selectionSwaps = data2['selectionSwap'];
-        console.log("Selection Swaps: " + selectionSwaps);
-        document.getElementById('selectionSwap').innerHTML = selectionSwaps;
-
-
-
-        data2.forEach(row => addRow(row));
-      } catch (error) {
-        if (error.name === 'AbortError') {
-          resultContainer.innerHTML += `<div>Error: Request timed out</div>`;
-        } else {
-          resultContainer.innerHTML += `<div>Error: Could not retrieve sort data</div>`;
-        }
-      } 
-    }
 
   </script>
 </body>
