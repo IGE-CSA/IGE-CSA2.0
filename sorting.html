@@ -109,6 +109,7 @@ title: Sorting
       <div class="beaker">
         <div class="water1" id="water1"></div>
       </div>
+      <p id="output"></p>
       <!-- print seconds instead of fill rate -->
     </div>
     <div class="column">
@@ -166,6 +167,7 @@ title: Sorting
         // creating variables
         bubble = data['bubbleSort'];
         console.log(bubble);
+        document.getElementById('output').innerHTML = bubble;
         insert = data['insertionSort'];
         console.log(insert);
         merge = data['mergeSort'];
@@ -226,6 +228,52 @@ title: Sorting
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
+
+
+    let bubbleSwaps, insertSwaps, mergeSwaps, selectionSwaps;
+
+    const resultContainer2 = document.getElementById("result");
+    const swapUrl = "http://localhost:8085/api/finalsort/speeds";
+    const controller2 = new AbortController();
+    const signal2 = controller2.signal;
+
+
+  async function fetchSwap() {
+      try {
+        const response = await fetch(swapUrl, {
+          method: 'GET',
+          signal: signal,
+          mode: 'cors'
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        // creating variables
+        bubbleSwaps = data['bubbleSort'];
+        console.log(bubble);
+        insertSwaps = data['insertionSort'];
+        console.log(insert);
+        mergeSwaps = data['mergeSort'];
+        console.log(merge);
+        selectionSwaps = data['selectionSort'];
+        console.log(selection);
+
+
+
+        data.forEach(row => addRow(row));
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          resultContainer.innerHTML += `<div>Error: Request timed out</div>`;
+        } else {
+          resultContainer.innerHTML += `<div>Error: Could not retrieve sort data</div>`;
+        }
+      } 
+    }
 
   </script>
 </body>
