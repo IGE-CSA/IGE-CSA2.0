@@ -273,37 +273,35 @@ title: Sorting
 
         // Speed
         bubbleSpeed = data['bubbleSpeed'];
-        console.log("Bubble speed: " + bubbleSpeed);
-        document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
-
         insertSpeed = data['insertionSpeed'];
-        console.log("Insertion speed: " + insertSpeed);
-        document.getElementById('insertSpeed').innerHTML = insertSpeed;
-
         mergeSpeed = data['mergeSpeed'];
-        console.log("Merge speed: " + mergeSpeed);
-        document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
-
         selectionSpeed = data['selectionSpeed'];
+
+        console.log("Bubble speed: " + bubbleSpeed);
+        console.log("Insertion speed: " + insertSpeed);
+        console.log("Merge speed: " + mergeSpeed);
         console.log("Selection speed: " + selectionSpeed);
+
+        document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
+        document.getElementById('insertSpeed').innerHTML = insertSpeed;
+        document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
         document.getElementById('selectionSpeed').innerHTML = selectionSpeed;
 
 
         // Swap
         bubbleSwaps = data['bubbleSwap'];
-        console.log("Bubble Swap: " + bubbleSwaps);
-        document.getElementById('bubbleSwap').innerHTML = bubbleSwaps;
-
         insertSwaps = data['insertionSwap'];
-        console.log("Insertion Swap: "+ insertSwaps);
-        document.getElementById('insertionSwap').innerHTML = insertSwaps;
-
         mergeSwaps = data['mergeSwap'];
-        console.log("Merge Swap" + mergeSwaps);
-        document.getElementById('mergeSwap').innerHTML = mergeSwaps;
-
         selectionSwaps = data['selectionSwap'];
+
+        console.log("Bubble Swap: " + bubbleSwaps);
+        console.log("Insertion Swap: "+ insertSwaps);
+        console.log("Merge Swap" + mergeSwaps);
         console.log("Selection Swaps: " + selectionSwaps);
+
+        document.getElementById('bubbleSwap').innerHTML = bubbleSwaps;
+        document.getElementById('insertionSwap').innerHTML = insertSwaps;
+        document.getElementById('mergeSwap').innerHTML = mergeSwaps;
         document.getElementById('selectionSwap').innerHTML = selectionSwaps;
 
         // Comparisons
