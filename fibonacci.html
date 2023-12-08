@@ -1,0 +1,119 @@
+---
+layout: default
+title: Fibonacci
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Sequence Calculator</title>
+</head>
+<body>
+
+    <h1>Fibonacci Sequence Calculator</h1>
+
+    <label for="nthNumber">Type the nth number in the Fibonacci sequence:</label>
+    <input type="number" id="nthNumber" placeholder="Enter a number">
+
+    <table border="1">
+        <tr>
+            <th>Method</th>
+            <th>Time</th>
+            <th>Number</th>
+            <th>List</th>
+        </tr>
+        <tr>
+            <td>Binet</td>
+            <td id="binetTime"></td>
+            <td id="binetNumber"></td>
+            <td id="binetList"></td>
+        </tr>
+        <tr>
+            <td>Matrix</td>
+            <td id="matrixTime"></td>
+            <td id="matrixNumber"></td>
+            <td id="matrixList"></td>
+        </tr>
+    </table>
+
+    <script>
+        function calculateFibonacci() {
+            const nthNumber = document.getElementById('nthNumber').value;
+
+            // Calculate using Binet's formula
+            const binetStart = performance.now();
+            const binetResult = binetFormula(nthNumber);
+            const binetEnd = performance.now();
+            const binetTime = binetEnd - binetStart;
+
+            document.getElementById('binetTime').textContent = binetTime.toFixed(4) + ' ms';
+            document.getElementById('binetNumber').textContent = binetResult;
+            document.getElementById('binetList').textContent = generateFibonacciList(nthNumber, binetFormula);
+
+            // Calculate using Matrix exponentiation
+            const matrixStart = performance.now();
+            const matrixResult = matrixExponentiation(nthNumber);
+            const matrixEnd = performance.now();
+            const matrixTime = matrixEnd - matrixStart;
+
+            document.getElementById('matrixTime').textContent = matrixTime.toFixed(4) + ' ms';
+            document.getElementById('matrixNumber').textContent = matrixResult;
+            document.getElementById('matrixList').textContent = generateFibonacciList(nthNumber, matrixExponentiation);
+        }
+
+        function binetFormula(n) {
+            const sqrt5 = Math.sqrt(5);
+            const phi = (1 + sqrt5) / 2;
+            return Math.round((Math.pow(phi, n) - Math.pow(1 - phi, n)) / sqrt5);
+        }
+
+        function matrixExponentiation(n) {
+            if (n === 0) return 0;
+            if (n === 1) return 1;
+
+            const baseMatrix = [[1, 1], [1, 0]];
+            const resultMatrix = matrixPower(baseMatrix, n - 1);
+            return resultMatrix[0][0];
+        }
+
+        function matrixMultiply(a, b) {
+            const result = [];
+            for (let i = 0; i < a.length; i++) {
+                result[i] = [];
+                for (let j = 0; j < b[0].length; j++) {
+                    result[i][j] = 0;
+                    for (let k = 0; k < a[0].length; k++) {
+                        result[i][j] += a[i][k] * b[k][j];
+                    }
+                }
+            }
+            return result;
+        }
+
+        function matrixPower(matrix, n) {
+            if (n === 1) return matrix;
+            if (n % 2 === 0) {
+                const halfPower = matrixPower(matrix, n / 2);
+                return matrixMultiply(halfPower, halfPower);
+            } else {
+                const halfPower = matrixPower(matrix, (n - 1) / 2);
+                const squared = matrixMultiply(halfPower, halfPower);
+                return matrixMultiply(matrix, squared);
+            }
+        }
+
+        function generateFibonacciList(n, method) {
+            const list = [];
+            for (let i = 0; i <= n; i++) {
+                list.push(method(i));
+            }
+            return list.join(', ');
+        }
+    </script>
+
+    <button onclick="calculateFibonacci()">Calculate</button>
+
+</body>
+</html>
