@@ -317,22 +317,24 @@ title: Sorting
         document.getElementById('mergeSwap').innerHTML = mergeSwaps;
         document.getElementById('selectionSwap').innerHTML = selectionSwaps;
 
+
         // Comparisons
-        bubbleComparisons = data['bubbleComp'];
-        console.log("Bubble Comp: " + bubbleComparisons);
-        document.getElementById('bubbleComp').innerHTML = bubbleComparisons;
+        bubbleComp = data['bubbleComp'];
+        insertionComp = data['insertionComp'];
+        mergeComp = data['mergeComp'];
+        selectionComp = data['selectionComp'];
 
-        insertComparisons = data['insertionComp'];
-        console.log("Insertion Comp: " + insertComparisons);
-        document.getElementById('insertionComp').innerHTML = insertComparisons;
 
-        mergeComparisons = data['mergeComp'];
-        console.log("Merge Comp: " + mergeComparisons);
-        document.getElementById('mergeComp').innerHTML = mergeComparisons;
+        console.log("Bubble Comp: " + bubbleComp);
+        console.log("Insertion Comp: " + insertionComp);
+        console.log("Merge Comp: " + mergeComp);
+        console.log("Selection Comps: " + selectionComp);
 
-        selectionComparisons = data['selectionComp'];
-        console.log("Selection Comps: " + selectionComparisons);
-        document.getElementById('selectionComp').innerHTML = selectionComparisons;
+
+        document.getElementById('bubbleComp').innerHTML = bubbleComp;
+        document.getElementById('insertionComp').innerHTML = insertionComp;
+        document.getElementById('mergeComp').innerHTML = mergeComp;
+        document.getElementById('selectionComp').innerHTML = selectionComp;
 
 
         // Iterations
