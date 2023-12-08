@@ -182,36 +182,44 @@ title: Sorting
         <thead>
             <tr>
                 <th></th>
-                <th>Speed</th>
-                <th>Swaps</th>
-                <th>Comparisons</th>
-                <th>Iterations</th>
+                <th>Bubble</th>
+                <th>Insertion</th>
+                <th>Selection</th>
+                <th>Merge</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Row 1, Cell 1</td>
-                <td>Row 1, Cell 2</td>
-                <td>Row 1, Cell 3</td>
-                <td>Row 1, Cell 4</td>
-                <td>Row 1, Cell 5</td>
+                <td>Speed</td>
+                <td>
+                  <p id="bubbleSpeed"></p>
+                </td>
+                <td>
+                  <p id="insertionSpeed"></p>
+                </td>
+                <td>
+                  <p id="selectionSpeed"></p>
+                </td>
+                <td>
+                  <p id="mergeSpeed"></p>
+                </td>
             </tr>
             <tr>
-                <td>Row 2, Cell 1</td>
+                <td>Swaps</td>
                 <td>Row 2, Cell 2</td>
                 <td>Row 2, Cell 3</td>
                 <td>Row 2, Cell 4</td>
                 <td>Row 2, Cell 5</td>
             </tr>
             <tr>
-                <td>Row 3, Cell 1</td>
+                <td>Comparisons</td>
                 <td>Row 3, Cell 2</td>
                 <td>Row 3, Cell 3</td>
                 <td>Row 3, Cell 4</td>
                 <td>Row 3, Cell 5</td>
             </tr>
             <tr>
-                <td>Row 4, Cell 1</td>
+                <td>Iterations</td>
                 <td>Row 4, Cell 2</td>
                 <td>Row 4, Cell 3</td>
                 <td>Row 4, Cell 4</td>
@@ -239,7 +247,7 @@ title: Sorting
                 location.reload();
             });
 
-    let bubbleSpeed, insertSpeed, mergeSpeed, selectionSpeed, 
+    let bubbleSpeed, insertionSpeed, mergeSpeed, selectionSpeed, 
     bubbleSwaps, insertSwaps, mergeSwaps, selectionSwaps,
     bubbleComparisons, insertComparisons, mergeComparisons, selectionComparisons,
     bubbleIterations, insertIterations, mergeIterations, selectionIterations
@@ -270,17 +278,17 @@ title: Sorting
 
         // Speed
         bubbleSpeed = data['bubbleSpeed'];
-        insertSpeed = data['insertionSpeed'];
+        insertionSpeed = data['insertionSpeed'];
         mergeSpeed = data['mergeSpeed'];
         selectionSpeed = data['selectionSpeed'];
 
         console.log("Bubble speed: " + bubbleSpeed);
-        console.log("Insertion speed: " + insertSpeed);
+        console.log("Insertion speed: " + insertionSpeed);
         console.log("Merge speed: " + mergeSpeed);
         console.log("Selection speed: " + selectionSpeed);
 
         document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
-        document.getElementById('insertSpeed').innerHTML = insertSpeed;
+        document.getElementById('insertionSpeed').innerHTML = insertionSpeed;
         document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
         document.getElementById('selectionSpeed').innerHTML = selectionSpeed;
 
@@ -362,7 +370,7 @@ title: Sorting
     function waterInsertion(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / insert; // Adjust the divisor for a suitable scale
-      const duration = insertSpeed / 2;
+      const duration = insertionSpeed / 2;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
