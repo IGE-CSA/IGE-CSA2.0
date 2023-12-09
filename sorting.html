@@ -284,12 +284,24 @@ title: Sorting
         // creating variables
 
         // Speed
-        bubbleSpeed = data['bubbleSort'];
+        let bubbleSpeeds = [];
+        for (let i = 1; i <= 12; i++) {
+            let key = 'bubbleSort' + i;
+            bubbleSpeeds.push(data[key]);
+        }
+
+
+
+
+        
         insertionSpeed = data['insertionSort'];
         mergeSpeed = data['mergeSort'];
         selectionSpeed = data['selectionSort'];
 
-        console.log("Bubble speed: " + bubbleSpeed);
+        console.log("Bubble speed 1: " + bubbleSpeed1);
+        console.log("Bubble speed 2: " + bubbleSpeed2);
+        console.log("Bubble speed 3: " + bubbleSpeed3);
+        
         console.log("Insertion speed: " + insertionSpeed);
         console.log("Merge speed: " + mergeSpeed);
         console.log("Selection speed: " + selectionSpeed);
