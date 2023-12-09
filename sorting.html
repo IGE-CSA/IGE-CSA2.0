@@ -317,11 +317,12 @@ title: Sorting
         let mergeSpeed = roundToNearestHundredth(mergeSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / mergeSpeeds.length);
         let selectionSpeed = roundToNearestHundredth(selectionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / selectionSpeeds.length);
 
-
         document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
         document.getElementById('insertionSpeed').innerHTML = insertionSpeed;
         document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
         document.getElementById('selectionSpeed').innerHTML = selectionSpeed;
+
+        console.log("bubble speed: " + bubbleSpeed);
 
 
         // Swap
