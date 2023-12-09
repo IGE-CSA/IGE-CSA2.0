@@ -308,6 +308,8 @@ title: Sorting
             selectionSpeeds.push(data[key]);
         }
 
+        let average = bubbleSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / bubbleSpeeds.length;
+
 
         
         // insertionSpeed = data['insertionSort'];
