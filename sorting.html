@@ -250,6 +250,10 @@ title: Sorting
 
   <script>
 
+    function roundToNearestHundred(number) {
+        return Math.round(number / 100) * 100;
+    }
+
     document.getElementById('resetButton').addEventListener('click', function() {
                 location.reload();
             });
@@ -308,10 +312,10 @@ title: Sorting
             selectionSpeeds.push(data[key]);
         }
 
-        let bubbleSpeed = bubbleSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / bubbleSpeeds.length;
-        let insertionSpeed = insertionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / insertionSpeeds.length;
-        let mergeSpeed = mergeSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / mergeSpeeds.length;
-        let selectionSpeed = selectionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / selectionSpeeds.length;
+        let bubbleSpeed = roundToNearestHundred(bubbleSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / bubbleSpeeds.length);
+        let insertionSpeed = roundToNearestHundred(insertionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / insertionSpeeds.length);
+        let mergeSpeed = roundToNearestHundred(mergeSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / mergeSpeeds.length);
+        let selectionSpeed = roundToNearestHundred(selectionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / selectionSpeeds.length);
 
 
         document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
