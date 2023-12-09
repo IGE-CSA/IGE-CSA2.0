@@ -250,9 +250,9 @@ title: Sorting
 
   <script>
 
-    function roundToNearestHundred(number) {
-        return Math.round(number / 100) * 100;
-    }
+  function roundToNearestHundredth(number) {
+      return Number(number.toFixed(2));
+  }
 
     document.getElementById('resetButton').addEventListener('click', function() {
                 location.reload();
@@ -312,10 +312,10 @@ title: Sorting
             selectionSpeeds.push(data[key]);
         }
 
-        let bubbleSpeed = roundToNearestHundred(bubbleSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / bubbleSpeeds.length);
-        let insertionSpeed = roundToNearestHundred(insertionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / insertionSpeeds.length);
-        let mergeSpeed = roundToNearestHundred(mergeSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / mergeSpeeds.length);
-        let selectionSpeed = roundToNearestHundred(selectionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / selectionSpeeds.length);
+        let bubbleSpeed = roundToNearestHundredth(bubbleSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / bubbleSpeeds.length);
+        let insertionSpeed = roundToNearestHundredth(insertionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / insertionSpeeds.length);
+        let mergeSpeed = roundToNearestHundredth(mergeSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / mergeSpeeds.length);
+        let selectionSpeed = roundToNearestHundredth(selectionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / selectionSpeeds.length);
 
 
         document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
@@ -393,7 +393,7 @@ title: Sorting
     function waterBubble(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / bubble; // Adjust the divisor for a suitable scale
-      const duration = bubbleSpeed / 2;
+      const duration = bubbleSpeed;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -402,7 +402,7 @@ title: Sorting
     function waterInsertion(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / insert; // Adjust the divisor for a suitable scale
-      const duration = insertionSpeed / 2;
+      const duration = insertionSpeed;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -411,7 +411,7 @@ title: Sorting
     function waterSelection(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / selection; // Adjust the divisor for a suitable scale
-      const duration = selectionSpeed / 2;
+      const duration = selectionSpeed;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -420,7 +420,7 @@ title: Sorting
     function waterMerge(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / merge; // Adjust the divisor for a suitable scale
-      const duration = mergeSpeed / 2;
+      const duration = mergeSpeed;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
