@@ -290,26 +290,42 @@ title: Sorting
             bubbleSpeeds.push(data[key]);
         }
 
+        let insertionSpeeds = [];
+        for (let i = 1; i <= 12; i++) {
+            let key = 'insertionSort' + i;
+            insertionSpeeds.push(data[key]);
+        }
 
+        let mergeSpeeds = [];
+        for (let i = 1; i <= 12; i++) {
+            let key = 'mergeSort' + i;
+            mergeSpeeds.push(data[key]);
+        }
+
+        let selectionSpeeds = [];
+        for (let i = 1; i <= 12; i++) {
+            let key = 'selectionSort' + i;
+            selectionSpeeds.push(data[key]);
+        }
 
 
         
-        insertionSpeed = data['insertionSort'];
-        mergeSpeed = data['mergeSort'];
-        selectionSpeed = data['selectionSort'];
+        // insertionSpeed = data['insertionSort'];
+        // mergeSpeed = data['mergeSort'];
+        // selectionSpeed = data['selectionSort'];
 
-        console.log("Bubble speed 1: " + bubbleSpeed1);
-        console.log("Bubble speed 2: " + bubbleSpeed2);
-        console.log("Bubble speed 3: " + bubbleSpeed3);
-        
-        console.log("Insertion speed: " + insertionSpeed);
-        console.log("Merge speed: " + mergeSpeed);
-        console.log("Selection speed: " + selectionSpeed);
+        // console.log("Bubble speed 1: " + bubbleSpeed1);
+        // console.log("Bubble speed 2: " + bubbleSpeed2);
+        // console.log("Bubble speed 3: " + bubbleSpeed3);
 
-        document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
-        document.getElementById('insertionSpeed').innerHTML = insertionSpeed;
-        document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
-        document.getElementById('selectionSpeed').innerHTML = selectionSpeed;
+        // console.log("Insertion speed: " + insertionSpeed);
+        // console.log("Merge speed: " + mergeSpeed);
+        // console.log("Selection speed: " + selectionSpeed);
+
+        // document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
+        // document.getElementById('insertionSpeed').innerHTML = insertionSpeed;
+        // document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
+        // document.getElementById('selectionSpeed').innerHTML = selectionSpeed;
 
 
         // Swap
