@@ -313,23 +313,11 @@ title: Sorting
         let mergeSpeed = mergeSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / mergeSpeeds.length;
         let selectionSpeed = selectionSpeeds.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / selectionSpeeds.length;
 
-        
-        // insertionSpeed = data['insertionSort'];
-        // mergeSpeed = data['mergeSort'];
-        // selectionSpeed = data['selectionSort'];
 
-        // console.log("Bubble speed 1: " + bubbleSpeed1);
-        // console.log("Bubble speed 2: " + bubbleSpeed2);
-        // console.log("Bubble speed 3: " + bubbleSpeed3);
-
-        // console.log("Insertion speed: " + insertionSpeed);
-        // console.log("Merge speed: " + mergeSpeed);
-        // console.log("Selection speed: " + selectionSpeed);
-
-        // document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
-        // document.getElementById('insertionSpeed').innerHTML = insertionSpeed;
-        // document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
-        // document.getElementById('selectionSpeed').innerHTML = selectionSpeed;
+        document.getElementById('bubbleSpeed').innerHTML = bubbleSpeed;
+        document.getElementById('insertionSpeed').innerHTML = insertionSpeed;
+        document.getElementById('mergeSpeed').innerHTML = mergeSpeed;
+        document.getElementById('selectionSpeed').innerHTML = selectionSpeed;
 
 
         // Swap
