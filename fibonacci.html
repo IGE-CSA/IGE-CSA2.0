@@ -3,7 +3,6 @@ layout: default
 title: Fibonacci
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -126,7 +125,8 @@ title: Fibonacci
             const container = document.getElementById(containerId);
             container.innerHTML = '';
 
-            const delay = timeElapsed / fibList.length;
+            const delayFactor = 100; // Adjust this value to control the speed (higher value = slower)
+            const delay = timeElapsed / fibList.length * delayFactor;
 
             for (const fibNum of fibList) {
                 const block = document.createElement('div');
