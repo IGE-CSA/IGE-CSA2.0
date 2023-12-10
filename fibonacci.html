@@ -3,6 +3,7 @@ layout: default
 title: Fibonacci
 ---
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,7 +24,7 @@ title: Fibonacci
     <table border="1">
         <tr>
             <th>Method</th>
-            <th>Time (nano)</th>
+            <th>Time (ms)</th>
             <th>Fibonacci Number</th>
             <th>List</th>
         </tr>
@@ -43,13 +44,13 @@ title: Fibonacci
 
     <!-- Visualization for Binet's formula -->
     <div id="binetVisualization" style="margin-top: 20px;">
-        <h2>Binet's Formula Visualization:</h2>
+        <h2>Binet's Formula Visualization</h2>
         <div id="binetBlocks" style="display: flex; flex-wrap: wrap;"></div>
     </div>
 
     <!-- Visualization for Matrix exponentiation -->
     <div id="matrixVisualization" style="margin-top: 20px;">
-        <h2>Matrix Exponentiation Visualization:</h2>
+        <h2>Matrix Exponentiation Visualization</h2>
         <div id="matrixBlocks" style="display: flex; flex-wrap: wrap;"></div>
     </div>
 
@@ -88,7 +89,7 @@ title: Fibonacci
             document.getElementById('binetNumber').textContent = result.fibNum;
 
             // Generate Fibonacci list and display
-            const binetList = generateFibonacciList(result.fibNum);
+            const binetList = generateFibonacciList(n);
             document.getElementById('binetList').textContent = binetList.join(', ');
 
             // Visualize Binet's formula
@@ -110,7 +111,7 @@ title: Fibonacci
             document.getElementById('matrixNumber').textContent = result.fibNum;
 
             // Generate Fibonacci list and display
-            const matrixList = generateFibonacciList(result.fibNum);
+            const matrixList = generateFibonacciList(n);
             document.getElementById('matrixList').textContent = matrixList.join(', ');
 
             // Visualize Matrix exponentiation
@@ -126,7 +127,8 @@ title: Fibonacci
             container.innerHTML = '';
 
             const delayFactor = 100; // Adjust this value to control the speed (higher value = slower)
-            const delay = timeElapsed / fibList.length * delayFactor;
+            const minDelay = 100; // Minimum delay to avoid very fast visualization
+            const delay = Math.max(minDelay, timeElapsed / fibList.length * delayFactor);
 
             for (const fibNum of fibList) {
                 const block = document.createElement('div');
@@ -149,3 +151,4 @@ title: Fibonacci
 </body>
 
 </html>
+
