@@ -3,7 +3,6 @@ layout: default
 title: Fibonacci
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -132,7 +131,7 @@ title: Fibonacci
 
             for (const fibNum of fibList) {
                 const block = document.createElement('div');
-                block.style.width = '180px';
+                block.style.width = '150px';
                 block.style.height = '30px';
                 block.style.border = '1px solid black';
                 block.style.display = 'flex';
@@ -142,8 +141,14 @@ title: Fibonacci
 
                 container.appendChild(block);
 
+                // Highlight the new block in red
+                block.style.backgroundColor = 'red';
+
                 // Introduce a delay between each block
                 await sleep(delay);
+
+                // Remove the highlight
+                block.style.backgroundColor = '';
             }
         }
     </script>
@@ -151,4 +156,3 @@ title: Fibonacci
 </body>
 
 </html>
-
