@@ -162,7 +162,7 @@ title: Sorting
   </div>
 
   <!-- buttons -->
-  <button id="fillButton" onclick="waterBubble('water1', bubbleSpeed); waterInsertion('water2', insertionSpeed); waterSelection('water3', selectionSpeed); waterMerge('water4', mergeSpeed) ">Fill Beakers</button>
+  <button id="fillButton" onclick="waterBubble('water1'); waterInsertion('water2'); waterSelection('water3'); waterMerge('water4') ">Fill Beakers</button>
   <br>
   <button id="resetButton">Reset Page</button>
 
@@ -391,40 +391,40 @@ title: Sorting
 
     document.addEventListener('DOMContentLoaded', fetchSort); 
 
-    function waterBubble(waterId, speed) {
+    function waterBubble(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / bubble; // Adjust the divisor for a suitable scale
-      const duration = speed;
+      const duration = bubbleSpeed;
       console.log(duration);
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
 
-    function waterInsertion(waterId, speed) {
+    function waterInsertion(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / insert; // Adjust the divisor for a suitable scale
-      const duration = speed;
+      const duration = insertionSpeed;
       console.log(duration);
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
 
-    function waterSelection(waterId, speed) {
+    function waterSelection(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / selection; // Adjust the divisor for a suitable scale
-      const duration = speed;
+      const duration = selectionSpeed;
       console.log(duration);
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
     }
 
-    function waterMerge(waterId, speed) {
+    function waterMerge(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / merge; // Adjust the divisor for a suitable scale
-      const duration = speed;
+      const duration = mergeSpeed;
       console.log(duration);
 
       water.style.transition = `height ${duration}s ease-in-out`;
