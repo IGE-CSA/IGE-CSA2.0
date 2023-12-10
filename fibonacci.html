@@ -19,6 +19,7 @@ title: Fibonacci
 
     <label for="nthNumber">Type the nth number in the Fibonacci sequence:</label>
     <input type="number" id="nthNumber" placeholder="Enter a number">
+    <button onclick="calculateFibonacci()">Calculate</button>
 
     <table border="1">
         <tr>
@@ -57,11 +58,12 @@ title: Fibonacci
         async function calculateFibonacci() {
             const nthNumber = document.getElementById('nthNumber').value;
 
-            // Calculate using Binet's formula
-            await calculateAndDisplayBinetResult(nthNumber);
+            // Calculate using Binet's formula and Matrix exponentiation concurrently
+            const binetPromise = calculateAndDisplayBinetResult(nthNumber);
+            const matrixPromise = calculateAndDisplayMatrixResult(nthNumber);
 
-            // Calculate using Matrix exponentiation
-            await calculateAndDisplayMatrixResult(nthNumber);
+            // Wait for both promises to complete
+            await Promise.all([binetPromise, matrixPromise]);
         }
 
         function generateFibonacciList(fibNum) {
@@ -91,7 +93,7 @@ title: Fibonacci
             document.getElementById('binetList').textContent = binetList.join(', ');
 
             // Visualize Binet's formula
-            await visualizeFibonacci('binetBlocks', binetList);
+            visualizeFibonacci('binetBlocks', binetList, timeElapsed);
         }
 
         async function calculateAndDisplayMatrixResult(n) {
@@ -113,16 +115,18 @@ title: Fibonacci
             document.getElementById('matrixList').textContent = matrixList.join(', ');
 
             // Visualize Matrix exponentiation
-            await visualizeFibonacci('matrixBlocks', matrixList);
+            visualizeFibonacci('matrixBlocks', matrixList, timeElapsed);
         }
 
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        async function visualizeFibonacci(containerId, fibList) {
+        async function visualizeFibonacci(containerId, fibList, timeElapsed) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
+
+            const delay = timeElapsed / fibList.length;
 
             for (const fibNum of fibList) {
                 const block = document.createElement('div');
@@ -137,15 +141,11 @@ title: Fibonacci
                 container.appendChild(block);
 
                 // Introduce a delay between each block
-                await sleep(500); // Adjust the delay time as needed
+                await sleep(delay);
             }
         }
     </script>
 
-    <button onclick="calculateFibonacci()">Calculate</button>
-
 </body>
 
 </html>
-
-
