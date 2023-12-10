@@ -377,11 +377,6 @@ title: Sorting
         document.getElementById('mergeIterations').innerHTML = mergeIterations;
         document.getElementById('selectionIterations').innerHTML = selectionIterations;
 
-        waterBubble('water1');
-        waterInsertion('water2');
-        waterSelection('water3');
-        waterMerge('water4');
-
 
         data.forEach(row => addRow(row));
       } catch (error) {
@@ -397,8 +392,7 @@ title: Sorting
     function waterBubble(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / bubble; // Adjust the divisor for a suitable scale
-      const duration = bubbleSpeed;
-      console.log(duration);
+      const duration = 70;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -407,8 +401,7 @@ title: Sorting
     function waterInsertion(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / insert; // Adjust the divisor for a suitable scale
-      const duration = insertionSpeed;
-      console.log(duration);
+      const duration = 23;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -417,8 +410,7 @@ title: Sorting
     function waterSelection(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / selection; // Adjust the divisor for a suitable scale
-      const duration = selectionSpeed;
-      console.log(duration);
+      const duration = 54;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
@@ -427,8 +419,7 @@ title: Sorting
     function waterMerge(waterId) {
       const water = document.getElementById(waterId);
       // const duration = 10 / merge; // Adjust the divisor for a suitable scale
-      const duration = mergeSpeed;
-      console.log(duration);
+      const duration = 1;
 
       water.style.transition = `height ${duration}s ease-in-out`;
       water.style.height = '100%';
