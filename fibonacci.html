@@ -3,9 +3,14 @@ layout: default
 title: Fibonacci
 ---
 
-// user input: n (index in fibonnaci sequence)
-// table: display speed, fibonacci number, and fibonnaci sequence list up to that number
-// visualize algorithm speed building of triangle tower
+// take user input and save as variable n 
+// send n value back to backend to do calculations
+// backend sends time and fibonnaci number back 
+
+---
+layout: default
+title: Fibonacci
+---
 
 <html lang="en">
 <head>
@@ -45,60 +50,62 @@ title: Fibonacci
     <script>
         async function calculateFibonacci() {
             const nthNumber = document.getElementById('nthNumber').value;
-    
+
             // Calculate using Binet's formula
             await calculateAndDisplayBinetResult(nthNumber);
-    
+
             // Calculate using Matrix exponentiation
             await calculateAndDisplayMatrixResult(nthNumber);
         }
-    
+
+        function generateFibonacciList(fibNum) {
+            const fibList = [0, 1];
+            for (let i = 2; i <= fibNum; i++) {
+                fibList.push(fibList[i - 1] + fibList[i - 2]);
+            }
+            return fibList;
+        }
+
         async function calculateAndDisplayBinetResult(n) {
             const startTime = performance.now();
-    
+
             // Make AJAX request to the Binet endpoint
-            const response = await fetch(`http://localhost:8085/api/fibonacci/binet/{n}`);
+            const response = await fetch(`http://localhost:8085/api/fibonacci/binet/${n}`);
             const result = await response.json();
-    
+
             const endTime = performance.now();
             const timeElapsed = endTime - startTime;
-    
+
             // Display results in the table
             document.getElementById('binetTime').textContent = `${timeElapsed.toFixed(4)} ms`;
             document.getElementById('binetNumber').textContent = result.fibNum;
-            document.getElementById('binetList').textContent = generateFibonacciList(n, 'binet');
+            
+            // Generate Fibonacci list and display
+            const binetList = generateFibonacciList(result.fibNum);
+            document.getElementById('binetList').textContent = binetList.join(', ');
         }
-    
+
         async function calculateAndDisplayMatrixResult(n) {
             const startTime = performance.now();
-    
+
             // Make AJAX request to the Matrix endpoint
-            const response = await fetch(`http://localhost:8085/api/fibonacci/matrix/{n}`);
+            const response = await fetch(`http://localhost:8085/api/fibonacci/matrix/${n}`);
             const result = await response.json();
-    
+
             const endTime = performance.now();
             const timeElapsed = endTime - startTime;
-    
+
             // Display results in the table
             document.getElementById('matrixTime').textContent = `${timeElapsed.toFixed(4)} ms`;
             document.getElementById('matrixNumber').textContent = result.fibNum;
-            document.getElementById('matrixList').textContent = generateFibonacciList(n, 'matrix');
+
+            // Generate Fibonacci list and display
+            const matrixList = generateFibonacciList(result.fibNum);
+            document.getElementById('matrixList').textContent = matrixList.join(', ');
         }
-    
-        function generateFibonacciList(n, method) {
-            const list = [];
-            for (let i = 0; i <= n; i++) {
-                list.push(calculateFibonacciForIndex(method, i));
-            }
-            return list.join(', ');
-        }
-    
     </script>
-    
+
     <button onclick="calculateFibonacci()">Calculate</button>
 
 </body>
 </html>
-
-
-
