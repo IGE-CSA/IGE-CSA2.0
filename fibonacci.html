@@ -3,6 +3,10 @@ layout: default
 title: Fibonacci
 ---
 
+// user input: n (index in fibonnaci sequence)
+// table: display speed, fibonacci number, and fibonnaci sequence list up to that number
+// visualize algorithm speed building of triangle tower
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,8 +24,8 @@ title: Fibonacci
     <table border="1">
         <tr>
             <th>Method</th>
-            <th>Time</th>
-            <th>Number</th>
+            <th>Time (nano)</th>
+            <th>Fibonacci Number</th>
             <th>List</th>
         </tr>
         <tr>
@@ -39,81 +43,62 @@ title: Fibonacci
     </table>
 
     <script>
-        function calculateFibonacci() {
+        async function calculateFibonacci() {
             const nthNumber = document.getElementById('nthNumber').value;
-
+    
             // Calculate using Binet's formula
-            const binetStart = performance.now();
-            const binetResult = binetFormula(nthNumber);
-            const binetEnd = performance.now();
-            const binetTime = binetEnd - binetStart;
-
-            document.getElementById('binetTime').textContent = binetTime.toFixed(4) + ' ms';
-            document.getElementById('binetNumber').textContent = binetResult;
-            document.getElementById('binetList').textContent = generateFibonacciList(nthNumber, binetFormula);
-
+            await calculateAndDisplayBinetResult(nthNumber);
+    
             // Calculate using Matrix exponentiation
-            const matrixStart = performance.now();
-            const matrixResult = matrixExponentiation(nthNumber);
-            const matrixEnd = performance.now();
-            const matrixTime = matrixEnd - matrixStart;
-
-            document.getElementById('matrixTime').textContent = matrixTime.toFixed(4) + ' ms';
-            document.getElementById('matrixNumber').textContent = matrixResult;
-            document.getElementById('matrixList').textContent = generateFibonacciList(nthNumber, matrixExponentiation);
+            await calculateAndDisplayMatrixResult(nthNumber);
         }
-
-        function binetFormula(n) {
-            const sqrt5 = Math.sqrt(5);
-            const phi = (1 + sqrt5) / 2;
-            return Math.round((Math.pow(phi, n) - Math.pow(1 - phi, n)) / sqrt5);
+    
+        async function calculateAndDisplayBinetResult(n) {
+            const startTime = performance.now();
+    
+            // Make AJAX request to the Binet endpoint
+            const response = await fetch(`http://localhost:8085/api/fibonacci/binet/{n}`);
+            const result = await response.json();
+    
+            const endTime = performance.now();
+            const timeElapsed = endTime - startTime;
+    
+            // Display results in the table
+            document.getElementById('binetTime').textContent = `${timeElapsed.toFixed(4)} ms`;
+            document.getElementById('binetNumber').textContent = result.fibNum;
+            document.getElementById('binetList').textContent = generateFibonacciList(n, 'binet');
         }
-
-        function matrixExponentiation(n) {
-            if (n === 0) return 0;
-            if (n === 1) return 1;
-
-            const baseMatrix = [[1, 1], [1, 0]];
-            const resultMatrix = matrixPower(baseMatrix, n - 1);
-            return resultMatrix[0][0];
+    
+        async function calculateAndDisplayMatrixResult(n) {
+            const startTime = performance.now();
+    
+            // Make AJAX request to the Matrix endpoint
+            const response = await fetch(`http://localhost:8085/api/fibonacci/matrix/{n}`);
+            const result = await response.json();
+    
+            const endTime = performance.now();
+            const timeElapsed = endTime - startTime;
+    
+            // Display results in the table
+            document.getElementById('matrixTime').textContent = `${timeElapsed.toFixed(4)} ms`;
+            document.getElementById('matrixNumber').textContent = result.fibNum;
+            document.getElementById('matrixList').textContent = generateFibonacciList(n, 'matrix');
         }
-
-        function matrixMultiply(a, b) {
-            const result = [];
-            for (let i = 0; i < a.length; i++) {
-                result[i] = [];
-                for (let j = 0; j < b[0].length; j++) {
-                    result[i][j] = 0;
-                    for (let k = 0; k < a[0].length; k++) {
-                        result[i][j] += a[i][k] * b[k][j];
-                    }
-                }
-            }
-            return result;
-        }
-
-        function matrixPower(matrix, n) {
-            if (n === 1) return matrix;
-            if (n % 2 === 0) {
-                const halfPower = matrixPower(matrix, n / 2);
-                return matrixMultiply(halfPower, halfPower);
-            } else {
-                const halfPower = matrixPower(matrix, (n - 1) / 2);
-                const squared = matrixMultiply(halfPower, halfPower);
-                return matrixMultiply(matrix, squared);
-            }
-        }
-
+    
         function generateFibonacciList(n, method) {
             const list = [];
             for (let i = 0; i <= n; i++) {
-                list.push(method(i));
+                list.push(calculateFibonacciForIndex(method, i));
             }
             return list.join(', ');
         }
+    
     </script>
-
+    
     <button onclick="calculateFibonacci()">Calculate</button>
 
 </body>
 </html>
+
+
+
