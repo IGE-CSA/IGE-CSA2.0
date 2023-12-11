@@ -456,7 +456,7 @@ title: 2584
             const fibonacciNumber = document.getElementById('fibonacciNumber').value;
 
             // Make AJAX request to the Java backend
-            const response = await fetch(`http://localhost:8080/api/fibonaccigenerator/${fibonacciNumber}`);
+            const response = await fetch(`http://localhost:8085/api/fibonaccigenerator/${fibonacciNumber}`);
             const result = await response.json();
 
             // Display the generated Fibonacci sequence
